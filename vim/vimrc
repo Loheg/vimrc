@@ -1,0 +1,73 @@
+syntax on
+set number
+set wildmenu
+set showcmd
+
+
+set hlsearch
+exec "nohlsearch"
+set incsearch
+set ignorecase "忽略搜索大小写
+set smartcase "智能大小写
+
+set encoding=utf-8
+
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+
+
+set scrolloff=10
+
+set nocompatible
+filetype on
+filetype indent on
+filetype plugin on
+filetype plugin indent on
+let &t_ut=''
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+
+"colorscheme slate
+
+
+let mapleader=','
+
+noremap <leader><cr> :nohlsearch<cr>
+inoremap <leader>w <Esc>:w<cr>
+noremap <leader>w :w<cr>
+
+inoremap jj <Esc>
+noremap Q :q<cr>
+
+noremap <C-h> <C-w>h
+noremap <C-j> <C-w>j
+noremap <C-k> <C-w>k
+noremap <C-l> <C-w>l
+
+
+noremap R :source $MYVIMRC<cr>
+
+
+
+
+
+call plug#begin('~/.vim/plugged')
+
+Plug 'vim-airline/vim-airline'
+Plug 'connorholyday/vim-snazzy'
+Plug 'mhinz/vim-startify'
+Plug 'Yggdroot/indentLine'
+Plug 'preservim/nerdtree'
+Plug 'ctrlpvim/ctrlp.vim'
+call plug#end()
+
+
+let g:SnazzyTransparent = 1
+colorscheme snazzy
+
+
+nnoremap <leader>g :NERDTreeToggle<CR>
+nnoremap <leader>v :NERDTreeFind<CR>
+
+let g:ctrlp_map = '<c-p>'
