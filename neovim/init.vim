@@ -1,9 +1,15 @@
 let mapleader = " "
 
+
 syntax on
 set number
 
 set encoding=utf-8
+
+filetype on
+filetype indent on
+filetype plugin on
+filetype plugin indent on
 
 " 智能大小写
 set smartcase
@@ -32,69 +38,25 @@ nnoremap <C-l> <C-w>l
 
 nnoremap <leader>w :w<CR>
 inoremap <leader>w <Esc>:w<CR>
-nnoremap <leader>q :q<CR>
 
-call plug#begin('~/.local/share/nvim/plugged')
 
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-Plug 'preservim/nerdtree'
+call plug#begin('~/.config/nvim/plugged')
 
-Plug 'mhinz/vim-startify' " 开屏界面
+Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'morhetz/gruvbox'
+
+
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
 
 call plug#end()
 
-" --- nerdtree ---
-" 
-nnoremap <leader>g :NERDTreeToggle<CR>
-nnoremap <leader>v :NERDTreeFind<CR>
-" --- nerdtree ---
-
-" ---gruvbox---
+" theme
 colorscheme gruvbox
-" ---gruvbox---
+" theme
 
-" ---vim-airline---
-let g:airline#extensions#tabline#enabled = 1
-" ---vim-airline---
-
-" ---coc---
-" 插件安装
-let g:coc_global_extensions = ['coc-vimlsp']
-
-" 调出自动补全 ctrl + o
-inoremap <silent><expr> <c-o> coc#refresh()
-
-" 调出帮助文档 leader + h
-nnoremap <silent> <leader>h :call <SID>show_documentation()<CR>
-
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  elseif (coc#rpc#ready())
-    call CocActionAsync('doHover')
-  else
-    execute '!' . &keywordprg . " " . expand('<cword>')
-  endif
-endfunction
-
-" (coc)重命名 <leader> + r n
-nmap <leader>rn <Plug>(coc-rename)
-
-" Tab补全
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
-
-function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" ---coc---
+" airline
+let g:airline_theme='gruvbox'
+" airline
